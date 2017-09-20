@@ -16,5 +16,16 @@
   </head>
   <body>
     <battleship-app></battleship-app>
+
+    <template>
+      I'm coming from a template
+    </template>
+
+    <script>
+      var template = document.querySelector('template');
+      var clone = document.importNode(template.content, true);
+      document.body.appendChild(clone);
+    </script>
+
   </body>
 </html>
