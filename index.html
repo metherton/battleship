@@ -13,31 +13,23 @@
     <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
     <link rel="import" href="/src/battleship-app/battleship-app.html">
+    <template id="header">
+      <div>Header</div>
+      <template id="body">
+        <div>body</div>
+      </template>
+    </template>
   </head>
   <body>
     <battleship-app></battleship-app>
 
-    <template>
-      I'm coming from a template
-      <p>
-        This <span class="adjective"></span> template has
-        been copied <span class="number-of-copies"></span> times
-      </p>
-    </template>
-
-    <button onclick="copyTemplate()">Copy Template</button>
-
     <script>
-      var numberOfCopies = 0;
-      function copyTemplate() {
-        var template = document.querySelector('template');
-        var clone = document.importNode(template.content, true);
-
-        //replace placeholders
-        clone.querySelector('.adjective').textContent = "awesome";
-        clone.querySelector('.number-of-copies').textContent = ++numberOfCopies;
-        document.body.appendChild(clone);
-      }
+      var template = document.querySelector('#header');
+      var clone = document.importNode(template.content, true);
+      document.body.appendChild(clone);
+      var template = document.querySelector('#body');
+      var clone = document.importNode(template.content, true);
+      document.body.appendChild(clone);
     </script>
 
 
