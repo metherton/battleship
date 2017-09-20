@@ -23,7 +23,8 @@
   <body>
     <battleship-app></battleship-app>
 
-    <pluralsight-comment></pluralsight-comment>
+    <!-- OPTION 1 -->
+    <!--<pluralsight-comment></pluralsight-comment>-->
 
     <script>
       var PluralsightCommentProto = Object.create(HTMLElement.prototype);
@@ -33,11 +34,13 @@
       var PluralsightComment = document.registerElement('pluralsight-comment', {
         prototype: PluralsightCommentProto
       });
-      var clone = document.importNode(template.content, true);
-      document.body.appendChild(clone);
-      var template = document.querySelector('#body');
-      var clone = document.importNode(template.content, true);
-      document.body.appendChild(clone);
+
+      // option 2
+      var comment = new PluralsightComment();
+
+      // option 3
+      var comment = document.createElement('pluralsight-comment')
+      document.body.appendChild(comment);
     </script>
 
 
