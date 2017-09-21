@@ -18,7 +18,7 @@
   <body>
     <battleship-app></battleship-app>
 
-    <button is="pluralsight-button"></button>
+    <!--<button is="pluralsight-button"></button>-->
 
     <script>
       var Proto = Object.create(HTMLButtonElement.prototype);
@@ -27,12 +27,14 @@
         this.innerHTML = 'Pluralsight button';
         this.value = 'Default value';
         this.style.color = 'orange';
-      }
+      };
 
       var PluralsightButton = document.registerElement('pluralsight-button', {
         prototype: Proto,
         extends: 'button'
-      })
+      });
+
+      document.body.appendChild(new PluralsightButton());
 
     </script>
 
