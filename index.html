@@ -39,8 +39,12 @@
       var comment = new PluralsightComment();
 
       // option 3
-      var comment = document.createElement('pluralsight-comment')
+      var comment = document.createElement('pluralsight-comment');
       document.body.appendChild(comment);
+
+      // option 4
+      document.body.innerHTML = '<pluralsight-comment />';
+
     </script>
 
 
