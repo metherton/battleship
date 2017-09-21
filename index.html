@@ -34,7 +34,12 @@
         extends: 'button'
       });
 
-      document.body.appendChild(new PluralsightButton());
+      // option 2
+ //     document.body.appendChild(new PluralsightButton());
+
+      //option 3
+      var button = document.createElement('button', 'pluralsight-button');
+      document.body.appendChild(button);
 
     </script>
 
