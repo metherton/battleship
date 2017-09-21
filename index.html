@@ -13,40 +13,28 @@
     <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
     <link rel="import" href="/src/battleship-app/battleship-app.html">
-    <template id="header">
-      <div>Header</div>
-      <template id="body">
-        <div>body</div>
-      </template>
-    </template>
+
   </head>
   <body>
     <battleship-app></battleship-app>
 
-    <!-- OPTION 1 -->
-    <!--<pluralsight-comment></pluralsight-comment>-->
+    <button is="pluralsight-button"></button>
 
     <script>
-      var PluralsightCommentProto = Object.create(HTMLElement.prototype);
-      PluralsightCommentProto.createdCallback = function() {
-        this.innerHTML = "<h2>Pluralsight comment</h2><textarea></textarea><br><input type='submit'>"
-      };
-      var PluralsightComment = document.registerElement('pluralsight-comment', {
-        prototype: PluralsightCommentProto
-      });
+      var Proto = Object.create(HTMLButtonElement.prototype);
 
-      // option 2
-      var comment = new PluralsightComment();
+      Proto.createdCallback = function() {
+        this.innerHTML = 'Pluralsight button';
+        this.value = 'Default value';
+        this.style.color = 'orange';
+      }
 
-      // option 3
-      var comment = document.createElement('pluralsight-comment');
-      document.body.appendChild(comment);
-
-      // option 4
-      document.body.innerHTML = '<pluralsight-comment />';
+      var PluralsightButton = document.registerElement('pluralsight-button', {
+        prototype: Proto,
+        extends: 'button'
+      })
 
     </script>
-
 
   </body>
 </html>
