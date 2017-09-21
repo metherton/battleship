@@ -18,33 +18,34 @@
   <body>
     <battleship-app></battleship-app>
 
-    <!--<button is="pluralsight-button"></button>-->
+    <hello-world></hello-world>
 
     <script>
-      var Proto = Object.create(HTMLButtonElement.prototype);
-
+      var Proto = Object.create(HTMLElement.prototype);
       Proto.createdCallback = function() {
-        this.innerHTML = 'Pluralsight button';
-        this.value = 'Default value';
-        this.style.color = 'orange';
+        this.innerHTML = '<h1>Hello world</h1>';
       };
 
-      var PluralsightButton = document.registerElement('pluralsight-button', {
-        prototype: Proto,
-        extends: 'button'
+      Proto.attachedCallback = function() {
+        console.log('attached');
+      };
+
+      Proto.detachedCallback = function() {
+        console.log('detached');
+      };
+
+
+      Proto.attributeChangedCallback = function(attrName, oldValue, newValue) {
+        console.log(attrName + ', ' + oldValue + ', ' + newValue);
+      };
+
+      var Hello = document.registerElement('hello-world', {
+        prototype: Proto
       });
 
-      // option 2
- //     document.body.appendChild(new PluralsightButton());
-
-      //option 3
-//      var button = document.createElement('button', 'pluralsight-button');
-//      document.body.appendChild(button);
-
-      // option 4
-      document.body.innerHTML = '<button is="pluralsight-button" />';
+      document.querySelector('hello-world').setAttribute('test', 1);
+      document.querySelector('hello-world').remove();
 
     </script>
-
   </body>
 </html>
