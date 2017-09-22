@@ -30,24 +30,30 @@
     </div>
 
     <template>
-      <style>
-        h1 {color: green}
-      </style>
-      <h1>hello world from shadow dom</h1>
+      <h1>Bad cat names</h1>
+      <content id="test"></content>
+
+      <script>
+        function sayHi() {
+          alert('Hi');
+        }
+      </script>
     </template>
 
 
-    <div id="shadow-host"></div>
-
-
     <script>
-      var template = document.querySelector('template');
-      var host = document.getElementById('shadow-host');
+      var host = document.getElementById('host');
       var root = host.createShadowRoot();
-      root.appendChild(document.importNode(template.content, true));
+      var template = document.querySelector('template');
+      var clone = document.importNode(template.content, true);
+      root.appendChild(clone);
 
-      console.log(document.querySelectorAll('h1'));
-      console.log(root.querySelectorAll('h1'));
+      var distributedNodes = root.querySelector('#test').getDistributedNodes();
+      console.log(distributedNodes);
+      var destinationInsertionPoints = document.querySelector('ul').getDestinationInsertionPoints();
+      console.log(destinationInsertionPoints);
+
+      window.sayHi();
     </script>
   </body>
 </html>
