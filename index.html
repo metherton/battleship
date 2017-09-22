@@ -14,11 +14,20 @@
 
     <link rel="import" href="/src/battleship-app/battleship-app.html">
 
+    <style>
+      h1 {color:red}
+    </style>
   </head>
   <body>
     <battleship-app></battleship-app>
 
-    <div id="host"></div>
+    <div id="host">
+      <ul>
+        <li>Wilbur</li>
+        <li>Alfred</li>
+        <li>Mortimer</li>
+      </ul>
+    </div>
 
     <template>
       <style>
@@ -27,11 +36,18 @@
       <h1>hello world from shadow dom</h1>
     </template>
 
+
+    <div id="shadow-host"></div>
+
+
     <script>
       var template = document.querySelector('template');
-      var host = document.getElementById('host');
+      var host = document.getElementById('shadow-host');
       var root = host.createShadowRoot();
       root.appendChild(document.importNode(template.content, true));
+
+      console.log(document.querySelectorAll('h1'));
+      console.log(root.querySelectorAll('h1'));
     </script>
   </body>
 </html>
