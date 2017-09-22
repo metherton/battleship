@@ -34,9 +34,14 @@
       <content id="test"></content>
 
       <script>
-        function sayHi() {
-          alert('Hi');
-        }
+        var module = (function() {
+          return {
+            sayHi: function() {
+              alert('hi');
+            }
+          };
+        }());
+
       </script>
     </template>
 
@@ -53,7 +58,7 @@
       var destinationInsertionPoints = document.querySelector('ul').getDestinationInsertionPoints();
       console.log(destinationInsertionPoints);
 
-      window.sayHi();
+      module.sayHi();
     </script>
   </body>
 </html>
