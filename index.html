@@ -20,10 +20,18 @@
 
     <div id="host"></div>
 
+    <template>
+      <style>
+        h1 {color: green}
+      </style>
+      <h1>hello world from shadow dom</h1>
+    </template>
+
     <script>
+      var template = document.querySelector('template');
       var host = document.getElementById('host');
       var root = host.createShadowRoot();
-      root.innerHTML = "<h1>hello world from shadow dom</h1>";
+      root.appendChild(document.importNode(template.content, true));
     </script>
   </body>
 </html>
