@@ -18,33 +18,12 @@
   <body>
     <battleship-app></battleship-app>
 
-    <hello-world></hello-world>
+    <div id="host"></div>
 
     <script>
-      var Proto = Object.create(HTMLElement.prototype);
-      Proto.createdCallback = function() {
-        this.innerHTML = '<h1>Hello world</h1>';
-      };
-
-      Proto.attachedCallback = function() {
-        console.log('attached');
-      };
-
-      Proto.detachedCallback = function() {
-        console.log('detached');
-      };
-
-      Proto.attributeChangedCallback = function(attrName, oldValue, newValue) {
-        console.log(attrName + ', ' + oldValue + ', ' + newValue);
-      };
-
-      var Hello = document.registerElement('hello-world', {
-        prototype: Proto
-      });
-
-      document.querySelector('hello-world').setAttribute('test', 1);
-      document.querySelector('hello-world').remove();
-
+      var host = document.getElementById('host');
+      var root = host.createShadowRoot();
+      root.innerHTML = "<h1>hello world from shadow dom</h1>";
     </script>
   </body>
 </html>
