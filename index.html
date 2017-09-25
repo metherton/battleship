@@ -25,6 +25,7 @@
       <ul>
         <li>Wilbur</li>
         <li>Alfre</li>
+        <li>Mortimer</li>
       </ul>
     </div>
 
@@ -39,6 +40,10 @@
       var template = document.querySelector('template');
       var clone = document.importNode(template.content, true);
       root.appendChild(clone);
+
+      var distributedNodes = root.querySelector('content').getDistributedNodes();
+      console.log(distributedNodes);
+
     </script>
 
 
