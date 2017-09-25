@@ -21,44 +21,26 @@
   <body>
     <battleship-app></battleship-app>
 
-    <comment-form>
-      <h1>Tell us whats on your mind</h1>
-      <p class="instructions">Fill out this form</p>
-      <p class="footer">Privacy policy</p>
-    </comment-form>
-
+    <div id="host">
+      <ul>
+        <li>Wilbur</li>
+        <li>Alfre</li>
+      </ul>
+    </div>
 
     <template>
-
-      <fieldset>
-        <legend>
-          <content select="h1"></content>
-        </legend>
-        <content select="p.instructions"></content>
-        <textarea style="width: 400px; height: 200px"></textarea>
-        <br />
-        <input type="submit" value="Submit comment" >
-
-        <content select=".footer"></content>
-      </fieldset>
-
-
+      <h1>Bad cat names</h1>
+      <content></content>
     </template>
 
     <script>
-
-      var CommentProto = Object.create(HTMLElement.prototype);
-      CommentProto.createdCallback = function() {
-        var template = document.querySelector('template');
-        var shadow = this.createShadowRoot();
-        shadow.appendChild(document.importNode(template.content, true))
-      };
-
-      document.registerElement('comment-form', {
-        prototype: CommentProto
-      });
-
+      var host = document.querySelector('#host');
+      var root = host.createShadowRoot();
+      var template = document.querySelector('template');
+      var clone = document.importNode(template.content, true);
+      root.appendChild(clone);
     </script>
+
 
   </body>
 </html>
