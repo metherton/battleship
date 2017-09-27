@@ -27,6 +27,11 @@
 
     <template>
       <button id="shadow-dom-button">Shadow DOM button</button>
+      <content></content>
+      <select>
+        <option>1</option>
+        <option>2</option>
+      </select>
     </template>
 
     <script>
@@ -38,7 +43,11 @@
 
       document.addEventListener('click', function(e) {
         console.log(e.target.id + ' clicked');
-      })
+      });
+
+      document.addEventListener('change', function(e) {
+        console.log(e.target.id + ' changed');
+      });
     </script>
 
   </body>
