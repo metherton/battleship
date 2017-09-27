@@ -21,33 +21,30 @@
   <body>
     <battleship-app></battleship-app>
 
-    <button id="light-dom-button">Light DOM button</button>
+    <div id="host">
 
-    <div id="host"></div>
+      <p>
+        my host is styled via the :host selector
+      </p>
+
+    </div>
+
 
     <template>
-      <button id="shadow-dom-button">Shadow DOM button</button>
+
+      <style>
+        :host  {
+          border: red solid 1px;
+        }
+      </style>
       <content></content>
-      <select>
-        <option>1</option>
-        <option>2</option>
-      </select>
     </template>
 
     <script>
-
       var host = document.querySelector('#host');
       var root = host.createShadowRoot();
       var template = document.querySelector('template');
-      root.appendChild(document.importNode(template.content, true));
-
-      document.addEventListener('click', function(e) {
-        console.log(e.target.id + ' clicked');
-      });
-
-      document.addEventListener('change', function(e) {
-        console.log(e.target.id + ' changed');
-      });
+      root.appendChild(template.content);
     </script>
 
   </body>
