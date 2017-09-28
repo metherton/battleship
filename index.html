@@ -15,10 +15,13 @@
     <link rel="import" href="/src/battleship-app/battleship-app.html">
 
     <style>
-      #button {
-        color:green
+      car-list::shadow li {
+        color:red
       }
 
+      p {
+        color: blue;
+      }
     </style>
   </head>
   <body class="dark">
@@ -26,28 +29,29 @@
 
 
 
-    <div id="host">
-
-      <button id="button">My button</button>
-
-    </div>
-
+    <car-list>
+      <p>my car list header</p>
+    </car-list>
 
     <template>
-
-      <style>
-        ::content button {
-          color: red;
-        }
-      </style>
+      <ul>
+        <li>ferrari enzo</li>
+        <li>Porsche 911</li>
+        <li>Dodge caravan</li>
+      </ul>
       <content></content>
     </template>
 
     <script>
-      var host = document.querySelector('#host');
-      var root = host.createShadowRoot();
-      var template = document.querySelector('template');
-      root.appendChild(template.content.cloneNode(true));
+      var CarList = Object.create(HTMLElement.prototype);
+      CarList.createdCallback = function() {
+        var template = document.querySelector('template');
+        var templateClone = document.importNode(template.content, true);
+        this.createShadowRoot().appendChild(templateClone);
+      };
+      document.registerElement('car-list', {
+        prototype: CarList
+      });
     </script>
 
   </body>
