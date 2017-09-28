@@ -15,17 +15,20 @@
     <link rel="import" href="/src/battleship-app/battleship-app.html">
 
     <style>
-      h1 {color:red}
+      #button {
+        color:green
+      }
+
     </style>
   </head>
   <body class="dark">
     <battleship-app></battleship-app>
 
-    <div id="host" class="warning">
 
-      <p>
-        my host is styled via the :host selector
-      </p>
+
+    <div id="host">
+
+      <button id="button">My button</button>
 
     </div>
 
@@ -33,17 +36,8 @@
     <template>
 
       <style>
-        :host(.error)  {
-          border: red solid 1px;
-        }
-        :host(.warning)  {
-          border: yellow solid 1px;
-        }
-        :host(:hover) {
-          background-color: green;
-        }
-        :host-context(.dark) {
-          background-color: gray;
+        ::content button {
+          color: red;
         }
       </style>
       <content></content>
@@ -53,7 +47,7 @@
       var host = document.querySelector('#host');
       var root = host.createShadowRoot();
       var template = document.querySelector('template');
-      root.appendChild(template.content);
+      root.appendChild(template.content.cloneNode(true));
     </script>
 
   </body>
