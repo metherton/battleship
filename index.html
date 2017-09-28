@@ -15,42 +15,37 @@
     <link rel="import" href="/src/battleship-app/battleship-app.html">
 
     <style>
-      car-list::shadow li {
+      x-foo:unresolved {
         color:red
       }
 
-      p {
-        color: blue;
+      x-foo {
+        color: green;
       }
     </style>
   </head>
-  <body class="dark">
+  <body>
     <battleship-app></battleship-app>
 
-
-
-    <car-list>
-      <p>my car list header</p>
-    </car-list>
+    <x-foo>
+      i'm red because i match xfoo:unresolved
+    </x-foo>
 
     <template>
-      <ul>
-        <li>ferrari enzo</li>
-        <li>Porsche 911</li>
-        <li>Dodge caravan</li>
-      </ul>
-      <content></content>
+      I'm green because i am now resolved
     </template>
 
     <script>
-      var CarList = Object.create(HTMLElement.prototype);
-      CarList.createdCallback = function() {
+      var XProto = Object.create(HTMLElement.prototype);
+
+      XProto.createdCallback = function() {
         var template = document.querySelector('template');
         var templateClone = document.importNode(template.content, true);
         this.createShadowRoot().appendChild(templateClone);
       };
-      document.registerElement('car-list', {
-        prototype: CarList
+
+      document.registerElement('x-foo', {
+        prototype: XProto
       });
     </script>
 
