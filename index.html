@@ -12,9 +12,17 @@
 
     <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
+    <script>
+      function loaded(event) {
+        console.log('import loaded');
+      }
+    </script>
+
     <link rel="import" href="/src/battleship-app/battleship-app.html">
     <link rel="import" href="dream-garage.html" id="dream-garage">
-    <link rel="import" href="import.html" >
+    <link rel="import" href="import.html" onload="loaded(event)">
+
+
 
   </head>
   <body>
