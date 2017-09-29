@@ -1,8 +1,12 @@
-<ul>
-    <li>ferrari</li>
-    <li>porsche</li>
-    <li>dodge</li>
-</ul>
+<template>
+    <a href="#" id="view-disclaimer" onclick="getDisclaimer()" >View Disclaimer</a>
+    <ul>
+        <li>ferrari</li>
+        <li>porsche</li>
+        <li>dodge</li>
+    </ul>
+
+</template>
 
 <p id="disclaimer">
     i can only afford one of these cars
@@ -10,7 +14,26 @@
 
 <script>
 
-    var importDoc = document.currentScript.ownerDocument;
+    (function() {
+        var Proto = Object.create(HTMLElement.prototype);
+        var importDoc = document.currentScript.ownerDocument;
+
+        Proto.createdCallback = function() {
+            var template = importDoc.querySelector('template');
+            var templateClone = document.importNode(template.content, true);
+            var disclaimer = templateClone.querySelector('#view-disclaimer');
+            disclaimer.addEventListener('click', function() {
+               alert('I can only afford one of these cars');
+            });
+            var root = this.createShadowRoot();
+            root.appendChild(templateClone);
+        };
+        document.registerElement('dream-garage', {
+            prototype: Proto
+        });
+    })();
+
+
 
     function getDisclaimer() {
         console.log(document.querySelector('#disclaimer') == null);
