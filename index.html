@@ -13,40 +13,17 @@
     <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
     <link rel="import" href="/src/battleship-app/battleship-app.html">
+    <link rel="import" href="dream-garage.html" id="dream-garage">
 
-    <style>
-      x-foo:unresolved {
-        color:red
-      }
-
-      x-foo {
-        color: green;
-      }
-    </style>
   </head>
   <body>
     <battleship-app></battleship-app>
 
-    <x-foo>
-      i'm red because i match xfoo:unresolved
-    </x-foo>
-
-    <template>
-      I'm green because i am now resolved
-    </template>
-
     <script>
-      var XProto = Object.create(HTMLElement.prototype);
+      var content = document.querySelector("#dream-garage").import;
 
-      XProto.createdCallback = function() {
-        var template = document.querySelector('template');
-        var templateClone = document.importNode(template.content, true);
-        this.createShadowRoot().appendChild(templateClone);
-      };
-
-      document.registerElement('x-foo', {
-        prototype: XProto
-      });
+      var carList = content.querySelector("ul");
+      document.body.appendChild(carList);
     </script>
 
   </body>
