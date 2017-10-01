@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="./name-dialog.html">
 
 <dom-module id="battleship-app">
   <template>
@@ -7,7 +8,11 @@
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+
+    <name-dialog player-name="{{name}}" id="nameDialog"></name-dialog>
+
+    Welcome {{name}}
+
   </template>
 
   <script>
@@ -23,8 +28,20 @@
           prop1: {
             type: String,
             value: 'battleship-app'
+          },
+          name: {
+            type: String,
+            value: ''
           }
         };
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+      }
+
+      ready() {
+        super.ready();
       }
     }
 

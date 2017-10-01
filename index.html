@@ -12,25 +12,10 @@
 
     <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
-    <script>
-      function loaded(event) {
-        console.log('import loaded');
-      }
-    </script>
-
     <link rel="import" href="/src/battleship-app/battleship-app.html">
-    <link rel="import" href="dream-garage.html" id="dream-garage">
-    <link rel="import" href="import.html" onload="loaded(event)">
-
-
 
   </head>
   <body>
     <battleship-app></battleship-app>
-    <h1>When is content in imports applied ?</h1>
-
-    <p>body text</p>
-
-    <dream-garage></dream-garage>
   </body>
 </html>

@@ -1,0 +1,50 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html" >
+
+<dom-module id="name-dialog">
+    <template>
+        <paper-dialog id="nameDialog" modal>
+            <paper-input value="{{playerName}}" autofocus placeholder="Enter your name" on-keydown="checkForEnter"></paper-input>
+            <div class="buttons">
+                <paper-button raised dialog-confirm>Continue</paper-button>
+            </div>
+        </paper-dialog>
+    </template>
+
+    <script>
+
+        /**
+         * @customElement
+         * @polymer
+         */
+        class NameDialog extends Polymer.Element {
+            static get is() { return 'name-dialog'; }
+            static get properties() {
+                return {
+                    playerName: {
+                        type: String,
+                        notify: true
+                    }
+                };
+            }
+            connectedCallback() {
+                super.connectedCallback();
+            }
+
+            ready() {
+                super.ready();
+                this.$.nameDialog.open();
+            }
+
+            checkForEnter(e) {
+                if (e.keyCode == 13) {
+                    this.$.nameDialog.close();
+                }
+            }
+        }
+
+        window.customElements.define(NameDialog.is, NameDialog);
+    </script>
+</dom-module>
