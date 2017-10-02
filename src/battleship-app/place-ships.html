@@ -83,7 +83,13 @@
 
             ready() {
                 super.ready();
+                this.addEventListener('cellClicked', e => this._cellClicked(e));
             }
+
+            _cellClicked(event) {
+                window.alert('row:' + event.row + ', column:' + event.column);
+            }
+
         }
 
         window.customElements.define(PlaceShips.is, PlaceShips);

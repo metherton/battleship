@@ -52,8 +52,10 @@
 
             handleClick(e) {
                 e.target.style.backgroundColor = 'red';
-                window.alert(e.target.rowNumber);
-                console.log('box clicked');
+                let event = new CustomEvent('cellClicked', {bubbles: true, composed: true});
+                event.row = e.target.rowNumber;
+                event.column = e.target.columnNumber;
+                this.dispatchEvent(event);
             }
         }
 
