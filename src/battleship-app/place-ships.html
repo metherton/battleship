@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../bower_components/paper-badge/paper-badge.html" >
+<link rel="import" href="grid-square.html">
 
 
 <dom-module id="place-ships">
@@ -25,14 +26,6 @@
                 background-color: white;
                 color: aliceblue;
             }
-            .box {
-                background-color: lightseagreen;
-                color: #fff;
-                border-radius: 5px;
-                padding: 10px;
-                font-size: 100%;
-            }
-
             .select-boats {
                 margin-left: 40px;
                 margin-top: 40px;
@@ -47,7 +40,7 @@
                 <template is="dom-repeat" items="{{rowHeaders}}">
                     <div style="background-color: white; color: black" class="box bg-white">{{item}}</div>
                     <template is="dom-repeat" items="[1,2,3,4,5,6,7,8,9,10]">
-                        <div class="box"></div>
+                        <grid-square></grid-square>
                     </template>
                 </template>
             </div>

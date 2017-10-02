@@ -1,0 +1,50 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+
+<dom-module id="grid-square">
+
+    <template>
+
+        <style>
+            .box {
+                background-color: lightseagreen;
+                color: #fff;
+                border-radius: 5px;
+                padding: 20px;
+                font-size: 100%;
+            }
+            .box:hover {
+                cursor: pointer;
+            }
+        </style>
+
+        <div on-click="handleClick" class="box"></div>
+
+    </template>
+
+    <script>
+
+        /**
+         * @customElement
+         * @polymer
+         */
+        class GridSquare extends Polymer.Element {
+            static get is() { return 'grid-square'; }
+
+            connectedCallback() {
+                super.connectedCallback();
+            }
+
+            ready() {
+                super.ready();
+            }
+
+            handleClick(e) {
+                e.target.style.backgroundColor = 'red';
+                console.log('box clicked');
+            }
+        }
+
+        window.customElements.define(GridSquare.is, GridSquare);
+    </script>
+</dom-module>
