@@ -1,4 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/paper-badge/paper-badge.html" >
 
 
 <dom-module id="place-ships">
@@ -11,8 +13,10 @@
                 color: black;
             }
             .container {
+                display: grid;
                 margin-left: 40px;
                 margin-top: 10px;
+                grid-template-columns: 500px 500px;
             }
             .wrapper {
                 display: grid;
@@ -27,6 +31,11 @@
                 border-radius: 5px;
                 padding: 10px;
                 font-size: 100%;
+            }
+
+            .select-boats {
+                margin-left: 40px;
+                margin-top: 40px;
             }
         </style>
 
@@ -154,7 +163,13 @@
                 <div class="box i"></div>
                 <div class="box j"></div>
             </div>
-
+            <div class="select-boats">
+                <p><paper-checkbox>Frigate</paper-checkbox></p>
+                <p><paper-checkbox>Frigate</paper-checkbox></p>
+                <p><paper-checkbox>Destroyer</paper-checkbox></p>
+                <p><paper-checkbox>Destroyer</paper-checkbox></p>
+                <p><paper-checkbox>Carrier</paper-checkbox></p>
+            </div>
         </div>
     </template>
 
