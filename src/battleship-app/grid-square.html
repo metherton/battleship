@@ -18,7 +18,7 @@
             }
         </style>
 
-        <div row-number={{row}} column-number="{{column}}" on-click="handleClick" class="box"></div>
+        <div row-number={{row}} column-number="{{column}}" on-tap="handleTap" class="box"></div>
 
     </template>
 
@@ -50,7 +50,7 @@
                 super.ready();
             }
 
-            handleClick(e) {
+            handleTap(e) {
                 e.target.style.backgroundColor = 'red';
                 let event = new CustomEvent('cellClicked', {bubbles: true, composed: true});
                 event.row = e.target.rowNumber;
