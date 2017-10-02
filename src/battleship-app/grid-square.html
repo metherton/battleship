@@ -18,7 +18,7 @@
             }
         </style>
 
-        <div on-click="handleClick" class="box"></div>
+        <div row-number={{row}} column-number="{{column}}" on-click="handleClick" class="box"></div>
 
     </template>
 
@@ -31,6 +31,17 @@
         class GridSquare extends Polymer.Element {
             static get is() { return 'grid-square'; }
 
+            static get properties() {
+                return {
+                    row: {
+                        type: String
+                    },
+                    column: {
+                        type: String
+                    }
+                };
+            }
+
             connectedCallback() {
                 super.connectedCallback();
             }
@@ -41,6 +52,7 @@
 
             handleClick(e) {
                 e.target.style.backgroundColor = 'red';
+                window.alert(e.target.rowNumber);
                 console.log('box clicked');
             }
         }
