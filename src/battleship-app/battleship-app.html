@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="./name-dialog.html">
+<link rel="import" href="place-ships.html">
 
 <dom-module id="battleship-app">
   <template>
@@ -9,9 +10,13 @@
       }
     </style>
 
-    <name-dialog player-name="{{name}}" id="nameDialog"></name-dialog>
+    <name-dialog id="nameDialog"></name-dialog>
 
-    Welcome {{name}}
+    <template is="dom-if" if="{{name}}">
+      <h3>Welcome {{name}}</h3>
+    </template>
+
+    <place-ships></place-ships>
 
   </template>
 
@@ -28,10 +33,6 @@
           prop1: {
             type: String,
             value: 'battleship-app'
-          },
-          name: {
-            type: String,
-            value: ''
           }
         };
       }
@@ -42,9 +43,14 @@
 
       ready() {
         super.ready();
+        this.addEventListener('nameAdded', e => this._nameAdded(e));
       }
-    }
 
+      _nameAdded(event) {
+        this.name = event.playerName;
+      }
+
+    }
     window.customElements.define(BattleshipApp.is, BattleshipApp);
   </script>
 </dom-module>

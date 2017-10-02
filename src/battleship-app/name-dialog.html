@@ -6,7 +6,7 @@
 <dom-module id="name-dialog">
     <template>
         <paper-dialog id="nameDialog" modal>
-            <paper-input value="{{playerName}}" autofocus placeholder="Enter your name" on-keydown="checkForEnter"></paper-input>
+            <paper-input autofocus placeholder="Enter your name" on-click="nameAdded" on-keydown="checkForEnter"></paper-input>
             <div class="buttons">
                 <paper-button raised dialog-confirm>Continue</paper-button>
             </div>
@@ -21,14 +21,7 @@
          */
         class NameDialog extends Polymer.Element {
             static get is() { return 'name-dialog'; }
-            static get properties() {
-                return {
-                    playerName: {
-                        type: String,
-                        notify: true
-                    }
-                };
-            }
+
             connectedCallback() {
                 super.connectedCallback();
             }
@@ -40,9 +33,20 @@
 
             checkForEnter(e) {
                 if (e.keyCode == 13) {
+                    let event = new CustomEvent('nameAdded', {bubbles: true, composed: true});
+                    event.playerName = e.target.value;
+                    this.dispatchEvent(event);
                     this.$.nameDialog.close();
                 }
             }
+
+            nameAdded(e) {
+                let event = new CustomEvent('nameAdded', {bubbles: true, composed: true});
+                event.playerName = e.target.value;
+                this.dispatchEvent(event);
+                this.$.nameDialog.close();
+            }
+
         }
 
         window.customElements.define(NameDialog.is, NameDialog);
