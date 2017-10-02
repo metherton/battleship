@@ -41,127 +41,15 @@
 
         <div class="container">
             <div class="wrapper">
-                <div style="background-color: white; color: black" class="box bg-white"></div>
-                <div style="background-color: white; color: black" class="box bg-white">A</div>
-                <div style="background-color: white; color: black" class="box bg-white">B</div>
-                <div style="background-color: white; color: black" class="box bg-white">C</div>
-                <div style="background-color: white; color: black" class="box bg-white">D</div>
-                <div style="background-color: white; color: black" class="box bg-white">E</div>
-                <div style="background-color: white; color: black" class="box bg-white">F</div>
-                <div style="background-color: white; color: black" class="box bg-white">G</div>
-                <div style="background-color: white; color: black" class="box bg-white">H</div>
-                <div style="background-color: white; color: black" class="box bg-white">I</div>
-                <div style="background-color: white; color: black" class="box bg-white">J</div>
-                <div style="background-color: white; color: black" class="box bg-white">1</div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div style="background-color: white; color: black" class="box bg-white">2</div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div style="background-color: white; color: black" class="box bg-white">3</div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div style="background-color: white; color: black" class="box bg-white">4</div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div style="background-color: white; color: black" class="box bg-white">5</div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div style="background-color: white; color: black" class="box bg-white">6</div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div style="background-color: white; color: black" class="box bg-white">7</div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div style="background-color: white; color: black" class="box bg-white">8</div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div style="background-color: white; color: black" class="box bg-white">9</div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div style="background-color: white; color: black" class="box bg-white">10</div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
+                <template is="dom-repeat" items="{{columnHeaders}}">
+                    <div style="background-color: white; color: black" class="box bg-white">{{item}}</div>
+                </template>
+                <template is="dom-repeat" items="{{rowHeaders}}">
+                    <div style="background-color: white; color: black" class="box bg-white">{{item}}</div>
+                    <template is="dom-repeat" items="[1,2,3,4,5,6,7,8,9,10]">
+                        <div class="box"></div>
+                    </template>
+                </template>
             </div>
             <div class="select-boats">
                 <p><paper-checkbox>Frigate</paper-checkbox></p>
@@ -181,6 +69,19 @@
          */
         class PlaceShips extends Polymer.Element {
             static get is() { return 'place-ships'; }
+
+            static get properties() {
+                return {
+                    columnHeaders: {
+                        type: Array,
+                        value: ['','A','B','C','D','E','F','G','H','I','J']
+                    },
+                    rowHeaders: {
+                        type: Array,
+                        value: ['1','2','3','4','5','6','7','8','9','10']
+                    }
+                };
+            }
 
             connectedCallback() {
                 super.connectedCallback();
