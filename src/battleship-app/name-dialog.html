@@ -6,9 +6,9 @@
 <dom-module id="name-dialog">
     <template>
         <paper-dialog id="nameDialog" modal>
-            <paper-input required autofocus placeholder="Enter your name" on-click="nameAdded" on-keydown="checkForEnter"></paper-input>
+            <paper-input required auto-validate error-message="Enter a name please !" autofocus placeholder="Enter your name" on-click="nameAdded" on-keydown="checkForEnter"></paper-input>
             <div class="buttons">
-                <paper-button raised dialog-confirm>Continue</paper-button>
+                <paper-button raised>Continue</paper-button>
             </div>
         </paper-dialog>
     </template>
@@ -33,18 +33,22 @@
 
             checkForEnter(e) {
                 if (e.keyCode == 13) {
+                    if (e.target.value !== '' && e.target.value !== undefined) {
+                        let event = new CustomEvent('nameAdded', {bubbles: true, composed: true});
+                        event.playerName = e.target.value;
+                        this.dispatchEvent(event);
+                        this.$.nameDialog.close();
+                    }
+                }
+            }
+
+            nameAdded(e) {
+                if (e.target.value !== '' && e.target.value !== undefined) {
                     let event = new CustomEvent('nameAdded', {bubbles: true, composed: true});
                     event.playerName = e.target.value;
                     this.dispatchEvent(event);
                     this.$.nameDialog.close();
                 }
-            }
-
-            nameAdded(e) {
-                let event = new CustomEvent('nameAdded', {bubbles: true, composed: true});
-                event.playerName = e.target.value;
-                this.dispatchEvent(event);
-                this.$.nameDialog.close();
             }
 
         }
