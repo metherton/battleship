@@ -36,6 +36,18 @@
           assert.equal(elementHeader.innerHTML, 'Battleship');
         });
 
+        test('setting the welcome message', function(done) {
+          var element = fixture('BasicTestFixture');
+          element.name = 'martin';
+          flush(function() {
+            var elementShadowRoot = element.shadowRoot;
+            var welcomeHeader = elementShadowRoot.querySelector('h3');
+            assert.equal(welcomeHeader.innerHTML, 'Welcome martin');
+            done();
+          });
+        });
+
+
 //        test('setting a property on the element works', function() {
 //          // Create a test fixture
 //          var element = fixture('ChangedPropertyTestFixture');
