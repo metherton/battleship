@@ -6,6 +6,7 @@
 <dom-module id="name-dialog">
     <template>
         <paper-dialog id="nameDialog" modal>
+            <h3>Player 1</h3>
             <paper-input id="name" required auto-validate error-message="Enter a name please !" autofocus placeholder="Enter your name" on-keydown="checkForEnter"></paper-input>
             <div class="buttons">
                 <paper-button on-tap="nameAdded" raised>Continue</paper-button>
@@ -21,6 +22,15 @@
          */
         class NameDialog extends Polymer.Element {
             static get is() { return 'name-dialog'; }
+
+            static get properties() {
+                return {
+                    prop1: {
+                        type: String,
+                        value: 'name-dialog'
+                    }
+                };
+            }
 
             connectedCallback() {
                 super.connectedCallback();

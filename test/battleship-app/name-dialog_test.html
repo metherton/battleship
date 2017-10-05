@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>name dialog test</title>
+
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../../src/battleship-app/name-dialog.html">
+</head>
+<body>
+
+<test-fixture id="BasicTestFixture">
+    <template>
+        <name-dialog></name-dialog>
+    </template>
+</test-fixture>
+
+<script>
+    suite('name-dialog', function() {
+
+        test('instantiating the element with default properties works', function() {
+            var element = fixture('BasicTestFixture');
+            assert.equal(element.prop1, 'name-dialog');
+            var elementShadowRoot = element.shadowRoot;
+            var elementHeader = elementShadowRoot.querySelector('h3');
+            assert.equal(elementHeader.innerHTML, 'Player 1');
+        });
+
+//        test('setting the welcome message', function(done) {
+//            var element = fixture('BasicTestFixture');
+//            element.name = 'martin';
+//            flush(function() {
+//                var elementShadowRoot = element.shadowRoot;
+//                var welcomeHeader = elementShadowRoot.querySelector('h3');
+//                assert.equal(welcomeHeader.innerHTML, 'Welcome martin');
+//                done();
+//            });
+//        });
+
+    });
+</script>
+
+
+</body>
+</html>
