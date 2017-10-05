@@ -30,6 +30,18 @@
             assert.equal(elementHeader.innerHTML, 'Player 1');
         });
 
+        test('adding the name event', function(done) {
+            var element = fixture('BasicTestFixture');
+            var elementShadowRoot = element.shadowRoot;
+            var nameInput = elementShadowRoot.querySelector('#name');
+            nameInput.value = 'martin';
+            element.addEventListener('nameAdded', function(event) {
+                assert.equal(event.playerName, 'martin');
+                done();
+            });
+            element.nameAdded({});
+        });
+
 //        test('setting the welcome message', function(done) {
 //            var element = fixture('BasicTestFixture');
 //            element.name = 'martin';
