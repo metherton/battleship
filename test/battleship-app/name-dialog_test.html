@@ -72,6 +72,20 @@
             expect(dialog.open.callCount).to.be.equal(1);
         });
 
+        test('dialog close method fired when name added', function(done) {
+            var elementShadowRoot = element.shadowRoot;
+            var dialog = elementShadowRoot.querySelector('#playerNameDialog');
+            var nameInput = elementShadowRoot.querySelector('#name');
+            nameInput.value = 'martin';
+            element.addEventListener('nameAdded', function(event) {
+                assert.equal(event.playerName, 'martin');
+                expect(event.playerName).to.be.equal('martin');
+                done();
+            });
+            element.checkForEnter({keyCode: 13, target: {value: 'martin'}});
+            expect(dialog.close.callCount).to.be.equal(1);
+        });
+
     });
 </script>
 
