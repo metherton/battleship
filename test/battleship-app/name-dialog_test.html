@@ -22,8 +22,14 @@
 <script>
     suite('name-dialog', function() {
 
+        var element;
+
+        setup(function() {
+            element = fixture('BasicTestFixture');
+        });
+
         test('instantiating the element with default properties works', function() {
-            var element = fixture('BasicTestFixture');
+//            var element = fixture('BasicTestFixture');
 
             assert.equal(element.prop1, 'name-dialog');
             var elementShadowRoot = element.shadowRoot;
@@ -32,7 +38,7 @@
         });
 
         test('adding the name event', function(done) {
-            var element = fixture('BasicTestFixture');
+//            var element = fixture('BasicTestFixture');
             var elementShadowRoot = element.shadowRoot;
             var nameInput = elementShadowRoot.querySelector('#name');
             nameInput.value = 'martin';
@@ -45,7 +51,7 @@
         });
 
         test('entering name with Enter key', function(done) {
-            var element = fixture('BasicTestFixture');
+//            var element = fixture('BasicTestFixture');
             var elementShadowRoot = element.shadowRoot;
             var nameInput = elementShadowRoot.querySelector('#name');
             nameInput.value = 'martin';
