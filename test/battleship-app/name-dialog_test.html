@@ -25,12 +25,18 @@
         var element;
 
         setup(function() {
+            stub('paper-dialog', {
+               open: function() {
+                   console.log('dialog opened');
+               },
+                close: function() {
+                    console.log('dialog opened');
+                }
+            });
             element = fixture('BasicTestFixture');
         });
 
         test('instantiating the element with default properties works', function() {
-//            var element = fixture('BasicTestFixture');
-
             assert.equal(element.prop1, 'name-dialog');
             var elementShadowRoot = element.shadowRoot;
             var elementHeader = elementShadowRoot.querySelector('h3');
@@ -38,7 +44,6 @@
         });
 
         test('adding the name event', function(done) {
-//            var element = fixture('BasicTestFixture');
             var elementShadowRoot = element.shadowRoot;
             var nameInput = elementShadowRoot.querySelector('#name');
             nameInput.value = 'martin';
@@ -51,7 +56,6 @@
         });
 
         test('entering name with Enter key', function(done) {
-//            var element = fixture('BasicTestFixture');
             var elementShadowRoot = element.shadowRoot;
             var nameInput = elementShadowRoot.querySelector('#name');
             nameInput.value = 'martin';
@@ -62,13 +66,11 @@
             element.nameAdded({});
         });
 
-//        test('dialog open method fired on ready event', function(done) {
-//            var element = fixture('BasicTestFixture');
-//            var elementShadowRoot = element.shadowRoot;
-//            var dialog = elementShadowRoot.querySelector('#playerNameDialog');
-//            sinon.spy(dialog, 'open');
-//            expect(dialog.open).to.have.been.called();
-//        });
+        test('dialog open method fired on ready event', function() {
+            var elementShadowRoot = element.shadowRoot;
+            var dialog = elementShadowRoot.querySelector('#playerNameDialog');
+            expect(dialog.open.callCount).to.be.equal(1);
+        });
 
     });
 </script>
