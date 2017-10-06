@@ -24,6 +24,7 @@
 
         test('instantiating the element with default properties works', function() {
             var element = fixture('BasicTestFixture');
+
             assert.equal(element.prop1, 'name-dialog');
             var elementShadowRoot = element.shadowRoot;
             var elementHeader = elementShadowRoot.querySelector('h3');
@@ -37,20 +38,30 @@
             nameInput.value = 'martin';
             element.addEventListener('nameAdded', function(event) {
                 assert.equal(event.playerName, 'martin');
+                expect(event.playerName).to.be.equal('martin');
+                done();
+            });
+            element.checkForEnter({keyCode: 13, target: {value: 'martin'}});
+        });
+
+        test('entering name with Enter key', function(done) {
+            var element = fixture('BasicTestFixture');
+            var elementShadowRoot = element.shadowRoot;
+            var nameInput = elementShadowRoot.querySelector('#name');
+            nameInput.value = 'martin';
+            element.addEventListener('nameAdded', function(event) {
+                assert.equal(event.playerName, 'martin');
                 done();
             });
             element.nameAdded({});
         });
 
-//        test('setting the welcome message', function(done) {
+//        test('dialog open method fired on ready event', function(done) {
 //            var element = fixture('BasicTestFixture');
-//            element.name = 'martin';
-//            flush(function() {
-//                var elementShadowRoot = element.shadowRoot;
-//                var welcomeHeader = elementShadowRoot.querySelector('h3');
-//                assert.equal(welcomeHeader.innerHTML, 'Welcome martin');
-//                done();
-//            });
+//            var elementShadowRoot = element.shadowRoot;
+//            var dialog = elementShadowRoot.querySelector('#playerNameDialog');
+//            sinon.spy(dialog, 'open');
+//            expect(dialog.open).to.have.been.called();
 //        });
 
     });

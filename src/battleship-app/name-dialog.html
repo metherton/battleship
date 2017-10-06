@@ -5,7 +5,7 @@
 
 <dom-module id="name-dialog">
     <template>
-        <paper-dialog id="nameDialog" modal>
+        <paper-dialog id="playerNameDialog" modal>
             <h3>Player 1</h3>
             <paper-input id="name" required auto-validate error-message="Enter a name please !" autofocus placeholder="Enter your name" on-keydown="checkForEnter"></paper-input>
             <div class="buttons">
@@ -38,7 +38,8 @@
 
             ready() {
                 super.ready();
-                this.$.nameDialog.open();
+
+                this.$.playerNameDialog.open();
             }
 
             checkForEnter(e) {
@@ -47,7 +48,7 @@
                         let event = new CustomEvent('nameAdded', {bubbles: true, composed: true});
                         event.playerName = e.target.value;
                         this.dispatchEvent(event);
-                        this.$.nameDialog.close();
+                        this.$.playerNameDialog.close();
                     }
                 }
             }
@@ -57,7 +58,7 @@
                     let event = new CustomEvent('nameAdded', {bubbles: true, composed: true});
                     event.playerName = this.$.name.value;
                     this.dispatchEvent(event);
-                    this.$.nameDialog.close();
+                    this.$.playerNameDialog.close();
                 }
 
             }
