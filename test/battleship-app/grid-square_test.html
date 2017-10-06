@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>grid square test</title>
+
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../../src/battleship-app/grid-square.html">
+</head>
+<body>
+
+    <test-fixture id="BasicTestFixture">
+        <template>
+            <grid-square row="5" column="3"></grid-square>
+        </template>
+    </test-fixture>
+
+    <script>
+        suite('grid-square', function() {
+
+            var element;
+
+            setup(function() {
+                element = fixture('BasicTestFixture');
+            });
+
+            test('instantiating element with row & column', function() {
+                expect(element.row).to.be.equal('5');
+                expect(element.column).to.be.equal('3');
+            });
+
+            test('handle tap event', function(done) {
+                element.addEventListener('cellClicked', function(event) {
+                    expect(event.row).to.be.equal('5');
+                    expect(event.column).to.be.equal('3');
+                    done();
+                });
+                var event = {target: {rowNumber: '5', columnNumber: '3', style: {backgroundColor: undefined}}};
+                element.handleTap(event);
+                expect(event.target.style.backgroundColor).to.be.equal('red');
+            })
+
+        })
+    </script>
+
+</body>
+</html>
+
