@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>grid square test</title>
+
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../../src/battleship-app/place-ships.html">
+</head>
+<body>
+
+<test-fixture id="BasicTestFixture">
+    <template>
+        <place-ships></place-ships>
+    </template>
+</test-fixture>
+
+<script>
+    suite('place-ships', function() {
+
+        var element;
+
+        setup(function() {
+            element = fixture('BasicTestFixture');
+        });
+
+        test('instantiating element with row & column', function() {
+            expect(element.columnHeaders).to.have.members(['','A','B','C','D','E','F','G','H','I','J']);
+            expect(element.rowHeaders).to.have.members(['1','2','3','4','5','6','7','8','9','10']);
+        });
+
+    })
+</script>
+
+</body>
+</html>
+
