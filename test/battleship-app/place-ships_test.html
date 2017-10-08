@@ -31,6 +31,7 @@
         test('instantiating element with row & column', function(done) {
             expect(element.columnHeaders).to.have.members(['','A','B','C','D','E','F','G','H','I','J']);
             expect(element.rowHeaders).to.have.members(['1','2','3','4','5','6','7','8','9','10']);
+            expect(element.boats).to.have.lengthOf(5);
             flush(function() {
                 var gridSquares = element.shadowRoot.querySelectorAll('grid-square');
                 expect(gridSquares).to.have.lengthOf(100);
@@ -41,6 +42,19 @@
             });
 
         });
+
+        test('handle tap event', function(done) {
+            element.addEventListener('boatSelected', function(event) {
+                expect(event.boatIndex).to.be.equal('0');
+                done();
+            });
+
+            flush(function() {
+                var boats = element.shadowRoot.querySelectorAll('paper-checkbox');
+                expect(boats).to.have.lengthOf(5);
+                element.handleTap({target: {id: '0'}});
+            });
+        })
 
     })
 </script>

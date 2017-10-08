@@ -46,11 +46,9 @@
             </div>
             <div class="select-boats">
                 <p>Select a boat and click a square on the grid to place it</p>
-                <p><paper-checkbox>Frigate</paper-checkbox></p>
-                <p><paper-checkbox>Frigate</paper-checkbox></p>
-                <p><paper-checkbox>Destroyer</paper-checkbox></p>
-                <p><paper-checkbox>Destroyer</paper-checkbox></p>
-                <p><paper-checkbox>Carrier</paper-checkbox></p>
+                <template is="dom-repeat" items="{{boats}}">
+                    <p><paper-checkbox id="{{index}}" on-tap="handleTap">{{item.name}}</paper-checkbox></p>
+                </template>
             </div>
         </div>
     </template>
@@ -73,6 +71,10 @@
                     rowHeaders: {
                         type: Array,
                         value: ['1','2','3','4','5','6','7','8','9','10']
+                    },
+                    boats: {
+                        type: Array,
+                        value: [{name: 'Frigate'}, {name: 'Frigate'}, {name: 'Destroyer'}, {name: 'Destroyer'}, {name: 'Carrier'}]
                     }
                 };
             }
@@ -86,9 +88,15 @@
                 this.addEventListener('cellClicked', e => this._cellClicked(e));
             }
 
-            _cellClicked(event) {
-                window.alert('row:' + event.row + ', column:' + event.column);
+            handleTap(e) {
+                let event = new CustomEvent('boatSelected', {bubbles: true, composed: true});
+                event.boatIndex = e.target.id;
+                this.dispatchEvent(event);
             }
+
+//            _cellClicked(event) {
+//                window.alert('row:' + event.row + ', column:' + event.column);
+//            }
 
         }
 

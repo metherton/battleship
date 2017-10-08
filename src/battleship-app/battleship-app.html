@@ -46,10 +46,15 @@
       ready() {
         super.ready();
         this.addEventListener('nameAdded', e => this._nameAdded(e));
+        this.addEventListener('cellClicked', e => this._cellClicked(e));
       }
 
       _nameAdded(event) {
         this.name = event.playerName;
+      }
+
+      _cellClicked(event) {
+        window.alert('row:' + event.row + ', column:' + event.column);
       }
 
     }
