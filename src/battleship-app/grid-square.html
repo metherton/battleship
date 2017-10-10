@@ -51,7 +51,6 @@
             }
 
             handleTap(e) {
-
                 let event = new CustomEvent('cellClicked', {bubbles: true, composed: true});
                 event.row = e.target.rowNumber;
                 event.column = e.target.columnNumber;

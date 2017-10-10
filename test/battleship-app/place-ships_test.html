@@ -35,9 +35,9 @@
             flush(function() {
                 var gridSquares = element.shadowRoot.querySelectorAll('grid-square');
                 expect(gridSquares).to.have.lengthOf(100);
-                expect(gridSquares[30].row).to.be.equal('4');
-                expect(gridSquares[40].row).to.be.equal('5');
-                expect(gridSquares[99].row).to.be.equal('10');
+                expect(gridSquares[30].row).to.be.equal(4);
+                expect(gridSquares[40].row).to.be.equal(5);
+                expect(gridSquares[99].row).to.be.equal(10);
                 done();
             });
 

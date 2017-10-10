@@ -34,15 +34,27 @@
 
         <div class="container">
             <div class="wrapper">
+
                 <template is="dom-repeat" items="{{columnHeaders}}">
                     <div style="background-color: white; color: black" class="box bg-white">{{item}}</div>
                 </template>
-                <template is="dom-repeat" items="{{rowHeaders}}">
-                    <div style="background-color: white; color: black" class="box bg-white">{{item}}</div>
-                    <template as="columnNumber" is="dom-repeat" items="[1,2,3,4,5,6,7,8,9,10]">
-                        <grid-square  row="[[item]]" column="[[columnNumber]]"></grid-square>
+                <template is="dom-repeat" items="{{gridSquares}}">
+
+                    <template is="dom-if" if="[[isRowHeader(index)]]">
+                        <div style="background-color: white; color: black" class="box bg-white">[[rowNo(index)]]</div>
                     </template>
+                    <grid-square row="[[item.row]]" column="[[item.column]]"></grid-square>
                 </template>
+
+                <!--<template is="dom-repeat" items="{{columnHeaders}}">-->
+                    <!--<div style="background-color: white; color: black" class="box bg-white">{{item}}</div>-->
+                <!--</template>-->
+                <!--<template is="dom-repeat" items="{{rowHeaders}}">-->
+                    <!--<div style="background-color: white; color: black" class="box bg-white">{{item}}</div>-->
+                    <!--<template as="columnNumber" is="dom-repeat" items="[1,2,3,4,5,6,7,8,9,10]">-->
+                        <!--<grid-square  row="[[item]]" column="[[columnNumber]]"></grid-square>-->
+                    <!--</template>-->
+                <!--</template>-->
             </div>
             <div class="select-boats">
                 <p>Select a boat and click a square on the grid to place it</p>
@@ -75,8 +87,20 @@
                     boats: {
                         type: Array,
                         value: [{name: 'Frigate'}, {name: 'Frigate'}, {name: 'Destroyer'}, {name: 'Destroyer'}, {name: 'Carrier'}]
+                    },
+                    gridSquares: {
+                        type: Array,
+                        value: []
                     }
                 };
+            }
+
+            isRowHeader(i) {
+                return i % 10 === 0;
+            }
+
+            rowNo(i) {
+                return i / 10;
             }
 
             connectedCallback() {
@@ -85,13 +109,16 @@
 
             ready() {
                 super.ready();
+                var self = this;
+                [1,2,3,4,5,6,7,8,9,10].forEach(function(rowNo) {
+                    [1,2,3,4,5,6,7,8,9,10].forEach(function(columnNo) {
+                        self.gridSquares.push({row: rowNo, column: columnNo, selected: false})
+                    });
+                });
                 this.addEventListener('cellClicked', e => this._cellClicked(e));
             }
 
             handleTap(e) {
-
-
-
                 let event = new CustomEvent('boatSelected', {bubbles: true, composed: true});
                 event.boatIndex = e.target.id;
                 this.dispatchEvent(event);
