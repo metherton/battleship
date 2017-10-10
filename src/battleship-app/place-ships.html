@@ -89,14 +89,30 @@
             }
 
             handleTap(e) {
+
+
+
                 let event = new CustomEvent('boatSelected', {bubbles: true, composed: true});
                 event.boatIndex = e.target.id;
                 this.dispatchEvent(event);
             }
 
-//            _cellClicked(event) {
+            _cellClicked(event) {
+
+                let boatCheckboxes = this.shadowRoot.querySelectorAll('paper-checkbox');
+                let boatSelected = false;
+                boatCheckboxes.forEach(function(box) {
+                   if (box.checked && !box.disabled) {
+                       boatSelected = true;
+                   }
+                });
+                if (boatSelected) {
+                    window.alert('valid');
+                } else {
+                    window.alert('invalid');
+                }
 //                window.alert('row:' + event.row + ', column:' + event.column);
-//            }
+            }
 
         }
 
