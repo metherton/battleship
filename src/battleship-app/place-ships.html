@@ -40,7 +40,7 @@
                 <template is="dom-repeat" items="{{rowHeaders}}">
                     <div style="background-color: white; color: black" class="box bg-white">{{item}}</div>
                     <template as="columnNumber" is="dom-repeat" items="[1,2,3,4,5,6,7,8,9,10]">
-                        <grid-square row="[[item]]" column="[[columnNumber]]"></grid-square>
+                        <grid-square  row="[[item]]" column="[[columnNumber]]"></grid-square>
                     </template>
                 </template>
             </div>
@@ -109,6 +109,7 @@
                 if (boatSelected) {
                     window.alert('valid');
                 } else {
+                    event.target.style.backgroundColor = 'lightseagreen';
                     window.alert('invalid');
                 }
 //                window.alert('row:' + event.row + ', column:' + event.column);
