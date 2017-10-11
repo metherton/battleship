@@ -7,7 +7,6 @@
 
         <style>
             .box {
-                background-color: lightseagreen;
                 color: #fff;
                 border-radius: 5px;
                 padding: 20px;
@@ -16,9 +15,19 @@
             .box:hover {
                 cursor: pointer;
             }
+
+            .bg-red {
+                background-color: red;
+            }
+
+            .bg-lightseagreen {
+                background-color: lightseagreen;
+            }
+
+
         </style>
 
-        <div row-number={{row}} column-number="{{column}}" on-tap="handleTap" class="box"></div>
+        <div class$="[[cellColor]]"><div row-number=[[row]] column-number="[[column]]" on-tap="handleTap" class="box"></div></div>
 
     </template>
 
@@ -38,6 +47,13 @@
                     },
                     column: {
                         type: String
+                    },
+                    cellColor: {
+                        type: String,
+                        reflectToAttribute: true
+                    },
+                    selected: {
+                        type: Boolean
                     }
                 };
             }
