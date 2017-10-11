@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../bower_components/paper-badge/paper-badge.html" >
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html" >
 <link rel="import" href="grid-square.html">
 
 
@@ -34,6 +35,8 @@
                 margin-top: 40px;
             }
         </style>
+
+        <paper-toast id="invalidSelection" text="Please select a boat before clicking a square"></paper-toast>
 
         <div class="container">
             <div class="wrapper">
@@ -88,7 +91,7 @@
                     },
                     boats: {
                         type: Array,
-                        value: [{name: 'Frigate'}, {name: 'Frigate'}, {name: 'Destroyer'}, {name: 'Destroyer'}, {name: 'Carrier'}]
+                        value: [{name: 'Frigate', selected: false}, {name: 'Frigate', selected: false}, {name: 'Destroyer', selected: false}, {name: 'Destroyer', selected: false}, {name: 'Carrier', selected: false}]
                     },
                     gridSquares: {
                         type: Array,
@@ -124,6 +127,13 @@
                 let event = new CustomEvent('boatSelected', {bubbles: true, composed: true});
                 event.boatIndex = e.target.id;
                 this.dispatchEvent(event);
+                let boatCheckboxes = this.shadowRoot.querySelectorAll('paper-checkbox');
+                boatCheckboxes.forEach(function(box) {
+                    if (box.id !== event.boatIndex) {
+                        box.disabled = true;
+                    }
+                });
+
             }
 
             _cellClicked(event) {
@@ -135,12 +145,20 @@
                    }
                 });
                 if (boatSelected) {
-                    window.alert('valid');
                     var elementToMutate = 'gridSquares.' + (((event.row - 1) * 10) + event.column - 1);
                     this.set(elementToMutate, {cellColor: 'bg-red', selected: true});
-                } else {
+                    // set squares around it to yellow
+                    var squareAboveToMutate = 'gridSquares.' + (((event.row - 2) * 10) + event.column - 1);
+                    var squareBelowToMutate = 'gridSquares.' + (((event.row) * 10) + event.column - 1);
+                    var squareRightToMutate = 'gridSquares.' + (((event.row - 1) * 10) + event.column);
+                    var squareLeftToMutate = 'gridSquares.' + (((event.row - 1) * 10) + event.column - 2);
+                    this.set(squareAboveToMutate, {cellColor: 'bg-yellow'});
+                    this.set(squareBelowToMutate, {cellColor: 'bg-yellow'});
+                    this.set(squareRightToMutate, {cellColor: 'bg-yellow'});
+                    this.set(squareLeftToMutate, {cellColor: 'bg-yellow'});
 
-                    window.alert('invalid');
+                } else {
+                    this.shadowRoot.querySelector('#invalidSelection').open();
                 }
             }
 

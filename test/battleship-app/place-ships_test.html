@@ -46,6 +46,7 @@
         test('handle tap event', function(done) {
             element.addEventListener('boatSelected', function(event) {
                 expect(event.boatIndex).to.be.equal('0');
+
                 done();
             });
 
@@ -54,7 +55,12 @@
                 expect(boats).to.have.lengthOf(5);
                 element.handleTap({target: {id: '0'}});
             });
-        })
+        });
+
+        test('selecting a boat should disable other boat checkboxes', function() {
+
+
+        });
 
     })
 </script>
